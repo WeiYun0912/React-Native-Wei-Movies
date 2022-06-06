@@ -1,45 +1,52 @@
-import {
-  SafeAreaView,
-  Platform,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-} from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import React from "react";
 import Movies from "../components/Movies";
-import axios from "axios";
-import { useState, useEffect } from "react";
-
-const IMDB_API_KEY = "a7a877f8755c80969895d0d4749349af";
-
-export default function Home() {
-  const [movies, setMovies] = useState([]);
-
-  const getMoviesData = async () => {
-    const req = await axios.get(
-      `/discover/movie?api_key=${IMDB_API_KEY}&sort_by=popularity.desc`
-    );
-    setMovies(req.data);
-  };
-  useEffect(() => {
-    console.log("GET MOVIES EFFECT");
-    getMoviesData();
-  }, []);
-
+import { FAB } from "react-native-elements";
+import Ionicons from "react-native-vector-icons/Ionicons";
+export default function Home({ navigation }) {
   return (
-    <SafeAreaView style={styles.SafeArea}>
-      <ScrollView>
-        <Movies movies={movies} />
-      </ScrollView>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View style={{ marginBottom: 10 }}>
+        <ScrollView>
+          <View>
+            <Movies
+              mainTitle="Popular"
+              subTitle="Movies"
+              sort_by="popularity.desc"
+              navigation={navigation}
+            />
+          </View>
+          <View>
+            <Movies
+              mainTitle="Top Rated"
+              subTitle="Movies"
+              sort_by="vote_count.desc"
+              navigation={navigation}
+            />
+          </View>
+          <View>
+            <Movies
+              mainTitle="Hot"
+              subTitle="Movies"
+              sort_by="revenue.desc"
+              navigation={navigation}
+            />
+          </View>
+        </ScrollView>
+      </View>
+      <FAB
+        style={{
+          zIndex: 9999,
+          position: "absolute",
+          right: 10,
+          bottom: 30,
+        }}
+        color="#4B5D67"
+        size="large"
+        overlayColor="#454545"
+        icon={<Ionicons name="moon" color="#FBCB0A" size={25} />}
+        // icon={<Ionicons name="sunny" color="#FBCB0A" size={25} />}
+      />
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  SafeArea: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: Platform.OS == "android" ? 25 : 0,
-  },
-});
