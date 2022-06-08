@@ -1,5 +1,5 @@
-import { SafeAreaView, View, ScrollView, Button } from "react-native";
-import React, { useEffect, useRef } from "react";
+import { SafeAreaView, View, ScrollView } from "react-native";
+import React, { useEffect, useContext, useRef } from "react";
 import MovieAction from "../components/MovieDetail/MovieAction";
 import useMovies from "../customHook/useMovies";
 
@@ -12,9 +12,11 @@ import {
 import MovieOverview from "../components/MovieDetail/MovieOverview";
 import MovieCast from "../components/MovieDetail/MovieCast";
 import MovieRecommdations from "../components/MovieDetail/MovieRecommdations";
+import { ThemeContext } from "../Theme";
 
 export default function MovieDetail({ route, navigation }) {
   const { id } = route.params;
+  const { theme } = useContext(ThemeContext);
   const ref = useRef();
 
   const movie = useMovies({ id: id }, GET_SINGLE_MOVIE);
@@ -26,7 +28,12 @@ export default function MovieDetail({ route, navigation }) {
   }, [id]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: theme == "light" ? "#fff" : "#383838",
+      }}
+    >
       <ScrollView ref={ref}>
         <View>
           <MovieBanner

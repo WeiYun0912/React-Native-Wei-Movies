@@ -1,9 +1,11 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ThemeContext } from "../../Theme";
 
 export default function MovieOverview({ overview = "" }) {
   const [showMoreText, setShowMoreText] = useState(false);
 
+  const { theme } = useContext(ThemeContext);
   const ShortText = ({ overview }) => {
     let shortText = overview;
     if (overview.length > 150 && !showMoreText) {
@@ -15,12 +17,18 @@ export default function MovieOverview({ overview = "" }) {
 
   return (
     <View>
-      <Text style={{ color: "#484848", fontSize: 23, fontWeight: "bold" }}>
+      <Text
+        style={{
+          color: theme == "light" ? "#484848" : "#fff",
+          fontSize: 23,
+          fontWeight: "bold",
+        }}
+      >
         Overview
       </Text>
       <Text
         style={{
-          color: "#969696",
+          color: theme == "light" ? "#969696" : "#fff",
           fontSize: 18,
           fontWeight: "bold",
           textAlign: "justify",

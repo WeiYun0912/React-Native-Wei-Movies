@@ -1,10 +1,19 @@
 import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../Theme";
 
 export default function MovieRecommdations({ movieRecommdations, navigation }) {
+  const { theme } = useContext(ThemeContext);
   return (
     <View>
-      <Text style={{ color: "#484848", fontSize: 23, fontWeight: "bold" }}>
+      <Text
+        style={{
+          color: theme == "light" ? "#484848" : "#fff",
+          fontSize: 23,
+          fontWeight: "bold",
+          marginBottom: 10,
+        }}
+      >
         Recommend
       </Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>

@@ -1,10 +1,18 @@
 import { View, Text, ScrollView, Image } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../Theme";
 
 export default function MovieCast({ movieCast }) {
+  const { theme } = useContext(ThemeContext);
   return (
     <View>
-      <Text style={{ color: "#484848", fontSize: 23, fontWeight: "bold" }}>
+      <Text
+        style={{
+          color: theme == "light" ? "#484848" : "#fff",
+          fontSize: 23,
+          fontWeight: "bold",
+        }}
+      >
         Cast
       </Text>
       <ScrollView
@@ -27,7 +35,7 @@ export default function MovieCast({ movieCast }) {
             <Text
               style={{
                 textAlign: "center",
-                color: "#969696",
+                color: theme == "light" ? "#969696" : "#fff",
                 fontWeight: "bold",
               }}
             >

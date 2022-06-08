@@ -9,7 +9,12 @@ import { ThemeContext } from "../Theme";
 export default function Home({ navigation }) {
   const { setTheme, theme } = useContext(ThemeContext);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: theme == "light" ? "#fff" : "#383838",
+      }}
+    >
       <View style={{ marginBottom: 10 }}>
         <ScrollView>
           <View>

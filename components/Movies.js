@@ -1,7 +1,8 @@
 import { ScrollView, View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import useMovies from "../customHook/useMovies";
 import { GET_MOVIES } from "../helper/ApiUrlHelper";
+import { ThemeContext } from "../Theme";
 
 export default function Movies({
   navigation,
@@ -17,6 +18,9 @@ export default function Movies({
     { topRated, nowPlaying, upcoming, popular, toyStory },
     GET_MOVIES
   );
+
+  const { theme } = useContext(ThemeContext);
+
   return (
     <View style={{ marginLeft: 5, marginTop: 10 }}>
       <View
@@ -27,16 +31,34 @@ export default function Movies({
         }}
       >
         <View style={{ flexDirection: "row" }}>
-          <Text style={{ fontWeight: "900", fontSize: 20, color: "#535353" }}>
+          <Text
+            style={{
+              fontWeight: "900",
+              fontSize: 20,
+              color: theme == "light" ? "#535353" : "#fff",
+            }}
+          >
             {mainTitle}
           </Text>
-          <Text style={{ fontSize: 20, color: "#8a8a8a", marginLeft: 8 }}>
+          <Text
+            style={{
+              fontSize: 20,
+              color: theme == "light" ? "#8a8a8a" : "#fff",
+              marginLeft: 8,
+            }}
+          >
             {subTitle}
           </Text>
         </View>
         <View>
           <TouchableOpacity>
-            <Text style={{ color: "#7272f7", fontSize: 18, marginRight: 5 }}>
+            <Text
+              style={{
+                color: theme == "light" ? "#7272f7" : "#00AFC1",
+                fontSize: 18,
+                marginRight: 5,
+              }}
+            >
               Show All
             </Text>
           </TouchableOpacity>
