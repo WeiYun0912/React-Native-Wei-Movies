@@ -1,6 +1,6 @@
 # React-Native-Wei-Movies
 
-- Icons ： [1](https://callstack.github.io/react-native-paper/icons.html)、[2](https://materialdesignicons.com/)
+- Icons ： [react-native-vector](https://github.com/oblador/react-native-vector-icons)
 
 - IMDB API： [Discover Examples](https://www.themoviedb.org/documentation/api/discover)、[API Docs](https://developers.themoviedb.org/3/movies/get-movie-details)
 
