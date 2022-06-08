@@ -1,15 +1,13 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
-const s =
-  "Led by Woody, Andy's toys live happily in his room until Andy's birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy's heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.";
-
-export default function MovieOverview() {
+export default function MovieOverview({ overview = "" }) {
   const [showMoreText, setShowMoreText] = useState(false);
-  const ShortText = ({ description }) => {
-    let shortText = description;
-    if (description.length > 150 && !showMoreText) {
-      shortText = description.substr(0, 150) + "...";
+
+  const ShortText = ({ overview }) => {
+    let shortText = overview;
+    if (overview.length > 150 && !showMoreText) {
+      shortText = overview.substr(0, 150) + "...";
     }
 
     return <Text>{shortText}</Text>;
@@ -28,7 +26,7 @@ export default function MovieOverview() {
           textAlign: "justify",
         }}
       >
-        <ShortText description={s} />
+        <ShortText overview={overview} />
       </Text>
       <TouchableOpacity
         activeOpacity={0.7}

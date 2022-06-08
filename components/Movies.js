@@ -3,8 +3,20 @@ import React from "react";
 import useMovies from "../customHook/useMovies";
 import { GET_MOVIES } from "../helper/ApiUrlHelper";
 
-export default function Movies({ navigation, mainTitle, subTitle, sort_by }) {
-  const movies = useMovies({ sort_by }, GET_MOVIES);
+export default function Movies({
+  navigation,
+  mainTitle,
+  subTitle,
+  nowPlaying,
+  popular,
+  topRated,
+  upcoming,
+  toyStory,
+}) {
+  const movies = useMovies(
+    { topRated, nowPlaying, upcoming, popular, toyStory },
+    GET_MOVIES
+  );
   return (
     <View style={{ marginLeft: 5, marginTop: 10 }}>
       <View

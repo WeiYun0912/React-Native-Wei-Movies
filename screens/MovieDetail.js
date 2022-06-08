@@ -1,21 +1,33 @@
-import { SafeAreaView, View, ScrollView } from "react-native";
-import React from "react";
+import { SafeAreaView, View, ScrollView, Button } from "react-native";
+import React, { useEffect, useRef } from "react";
 import MovieAction from "../components/MovieDetail/MovieAction";
 import useMovies from "../customHook/useMovies";
 
 import MovieBanner from "../components/MovieDetail/MovieBanner";
-import { GET_SINGLE_MOVIE, GET_MOVIE_CAST } from "../helper/ApiUrlHelper";
+import {
+  GET_SINGLE_MOVIE,
+  GET_MOVIE_CAST,
+  GET_MOVIE_RECOMMENDATIONS,
+} from "../helper/ApiUrlHelper";
 import MovieOverview from "../components/MovieDetail/MovieOverview";
 import MovieCast from "../components/MovieDetail/MovieCast";
+import MovieRecommdations from "../components/MovieDetail/MovieRecommdations";
 
-export default function MovieDetail({ route }) {
+export default function MovieDetail({ route, navigation }) {
   const { id } = route.params;
+  const ref = useRef();
 
   const movie = useMovies({ id: id }, GET_SINGLE_MOVIE);
   const movieCast = useMovies({ id: id }, GET_MOVIE_CAST);
+  const movieRecommdations = useMovies({ id: id }, GET_MOVIE_RECOMMENDATIONS);
+
+  useEffect(() => {
+    ref.current.scrollTo({ x: 0, y: 0 });
+  }, [id]);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <ScrollView>
+      <ScrollView ref={ref}>
         <View>
           <MovieBanner
             title={movie.original_title}
@@ -33,6 +45,12 @@ export default function MovieDetail({ route }) {
         </View>
         <View style={{ padding: 20 }}>
           <MovieCast movieCast={movieCast} />
+        </View>
+        <View style={{ padding: 20 }}>
+          <MovieRecommdations
+            movieRecommdations={movieRecommdations}
+            navigation={navigation}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
