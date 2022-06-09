@@ -13,6 +13,7 @@ import MovieOverview from "../components/MovieDetail/MovieOverview";
 import MovieCast from "../components/MovieDetail/MovieCast";
 import MovieRecommdations from "../components/MovieDetail/MovieRecommdations";
 import { ThemeContext } from "../Theme";
+import { DarkTheme, LightTheme } from "../ThemeStyles";
 
 export default function MovieDetail({ route, navigation }) {
   const { id } = route.params;
@@ -31,7 +32,10 @@ export default function MovieDetail({ route, navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: theme == "light" ? "#fff" : "#383838",
+        backgroundColor:
+          theme == "light"
+            ? LightTheme.LightBackground
+            : DarkTheme.DarkBackground,
       }}
     >
       <ScrollView ref={ref}>
@@ -51,7 +55,7 @@ export default function MovieDetail({ route, navigation }) {
           <MovieOverview overview={movie.overview} />
         </View>
         <View style={{ padding: 20 }}>
-          <MovieCast movieCast={movieCast} />
+          <MovieCast movieCast={movieCast} navigation={navigation} />
         </View>
         <View style={{ padding: 20 }}>
           <MovieRecommdations

@@ -1,14 +1,17 @@
 import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
 import React, { useContext } from "react";
 import { ThemeContext } from "../../Theme";
-
+import { LightTheme, DarkTheme } from "../../ThemeStyles";
 export default function MovieRecommdations({ movieRecommdations, navigation }) {
   const { theme } = useContext(ThemeContext);
   return (
     <View>
       <Text
         style={{
-          color: theme == "light" ? "#484848" : "#fff",
+          color:
+            theme == "light"
+              ? LightTheme.MoiveRecommend
+              : DarkTheme.MoiveRecommend,
           fontSize: 23,
           fontWeight: "bold",
           marginBottom: 10,

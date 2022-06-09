@@ -5,6 +5,7 @@ import {
   GET_SINGLE_MOVIE,
   GET_MOVIE_CAST,
   GET_MOVIE_RECOMMENDATIONS,
+  GET_CAST_DETAIL,
 } from "../helper/ApiUrlHelper";
 
 const IMDB_API_KEY = "a7a877f8755c80969895d0d4749349af";
@@ -41,6 +42,9 @@ const useMovies = (searchParams, getDataType) => {
         break;
       case GET_MOVIE_RECOMMENDATIONS:
         url = `/movie/${searchParams.id}/recommendations?api_key=${IMDB_API_KEY}`;
+        break;
+      case GET_CAST_DETAIL:
+        url = `/person/${searchParams.personId}?api_key=${IMDB_API_KEY}`;
         break;
     }
 

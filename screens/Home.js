@@ -2,9 +2,9 @@ import { SafeAreaView, ScrollView, View } from "react-native";
 import React, { useContext } from "react";
 import Movies from "../components/Movies";
 import { FAB } from "react-native-elements";
-
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { ThemeContext } from "../Theme";
+import { DarkTheme, LightTheme } from "../ThemeStyles";
 
 export default function Home({ navigation }) {
   const { setTheme, theme } = useContext(ThemeContext);
@@ -12,7 +12,10 @@ export default function Home({ navigation }) {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: theme == "light" ? "#fff" : "#383838",
+        backgroundColor:
+          theme == "light"
+            ? LightTheme.LightBackground
+            : DarkTheme.DarkBackground,
       }}
     >
       <View style={{ marginBottom: 10 }}>

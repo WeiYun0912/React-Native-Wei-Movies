@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import useMovies from "../customHook/useMovies";
 import { GET_MOVIES } from "../helper/ApiUrlHelper";
 import { ThemeContext } from "../Theme";
+import { DarkTheme, LightTheme } from "../ThemeStyles";
 
 export default function Movies({
   navigation,
@@ -35,7 +36,10 @@ export default function Movies({
             style={{
               fontWeight: "900",
               fontSize: 20,
-              color: theme == "light" ? "#535353" : "#fff",
+              color:
+                theme == "light"
+                  ? LightTheme.MovieMainTitle
+                  : DarkTheme.MovieMainTitle,
             }}
           >
             {mainTitle}
@@ -43,7 +47,10 @@ export default function Movies({
           <Text
             style={{
               fontSize: 20,
-              color: theme == "light" ? "#8a8a8a" : "#fff",
+              color:
+                theme == "light"
+                  ? LightTheme.MovieSubTitle
+                  : DarkTheme.MovieSubTitle,
               marginLeft: 8,
             }}
           >
@@ -54,7 +61,8 @@ export default function Movies({
           <TouchableOpacity>
             <Text
               style={{
-                color: theme == "light" ? "#7272f7" : "#00AFC1",
+                color:
+                  theme == "light" ? LightTheme.ShowAll : DarkTheme.ShowAll,
                 fontSize: 18,
                 marginRight: 5,
               }}

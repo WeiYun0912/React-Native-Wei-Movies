@@ -1,14 +1,17 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
 import { ThemeContext } from "../../Theme";
-
-export default function MovieCast({ movieCast }) {
+import { LightTheme, DarkTheme } from "../../ThemeStyles";
+export default function MovieCast({ movieCast, navigation }) {
   const { theme } = useContext(ThemeContext);
   return (
     <View>
       <Text
         style={{
-          color: theme == "light" ? "#484848" : "#fff",
+          color:
+            theme == "light"
+              ? LightTheme.MovieCastTitle
+              : DarkTheme.MovieCastTitle,
           fontSize: 23,
           fontWeight: "bold",
         }}
@@ -21,27 +24,35 @@ export default function MovieCast({ movieCast }) {
         style={{ marginTop: 10 }}
       >
         {movieCast.cast?.slice(0, 10).map((cast) => (
-          <View
+          <TouchableOpacity
             key={cast.cast_id}
-            style={{ marginRight: 25, alignItems: "center" }}
+            activeOpacity={0.7}
+            onPress={() =>
+              navigation.navigate("CastDetail", { personId: cast.id })
+            }
           >
-            <Image
-              source={{
-                uri: `https://image.tmdb.org/t/p/w185${cast.profile_path}`,
-              }}
-              style={{ width: 70, height: 70, borderRadius: 100 }}
-              resizeMode="cover"
-            />
-            <Text
-              style={{
-                textAlign: "center",
-                color: theme == "light" ? "#969696" : "#fff",
-                fontWeight: "bold",
-              }}
-            >
-              {cast.name}
-            </Text>
-          </View>
+            <View style={{ marginRight: 25, alignItems: "center" }}>
+              <Image
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w185${cast.profile_path}`,
+                }}
+                style={{ width: 70, height: 70, borderRadius: 100 }}
+                resizeMode="cover"
+              />
+              <Text
+                style={{
+                  textAlign: "center",
+                  color:
+                    theme == "light"
+                      ? LightTheme.MovieCast
+                      : DarkTheme.MovieCast,
+                  fontWeight: "bold",
+                }}
+              >
+                {cast.name}
+              </Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>

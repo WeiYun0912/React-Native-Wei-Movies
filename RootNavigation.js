@@ -5,6 +5,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Home from "./screens/Home";
 import FavoriteMovie from "./screens/FavoriteMovie";
 import MovieDetail from "./screens/MovieDetail";
+import CastDetail from "./screens/CastDetail";
+
 import { ThemeProvider } from "./Theme";
 
 const BottomTab = createBottomTabNavigator();
@@ -66,6 +68,19 @@ export default function RootNavigation() {
           <BottomTab.Screen
             name="MovieDetail"
             component={MovieDetail}
+            options={{
+              tabBarStyle: {
+                display: "none",
+              },
+              tabBarItemStyle: {
+                display: "none",
+              },
+              headerShown: false,
+            }}
+          />
+          <BottomTab.Screen
+            name="CastDetail"
+            component={CastDetail}
             options={{
               tabBarStyle: {
                 display: "none",
