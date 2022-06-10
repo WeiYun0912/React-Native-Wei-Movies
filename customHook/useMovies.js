@@ -6,6 +6,8 @@ import {
   GET_MOVIE_CAST,
   GET_MOVIE_RECOMMENDATIONS,
   GET_CAST_DETAIL,
+  GET_CAST_IMAGE,
+  GET_CAST_MOVIES,
 } from "../helper/ApiUrlHelper";
 
 const IMDB_API_KEY = "a7a877f8755c80969895d0d4749349af";
@@ -30,7 +32,6 @@ const useMovies = (searchParams, getDataType) => {
           url = `/movie/upcoming?api_key=${IMDB_API_KEY}`;
         if (searchParams.toyStory) {
           url = `/search/movie?api_key=${IMDB_API_KEY}&query='Toy Story'`;
-          console.log(url);
         }
 
         break;
@@ -46,6 +47,12 @@ const useMovies = (searchParams, getDataType) => {
       case GET_CAST_DETAIL:
         url = `/person/${searchParams.personId}?api_key=${IMDB_API_KEY}`;
         break;
+      case GET_CAST_IMAGE:
+        url = `/person/${searchParams.personId}/images?api_key=${IMDB_API_KEY}`;
+        break;
+      case GET_CAST_MOVIES:
+        url = `/person/${searchParams.personId}/movie_credits?api_key=${IMDB_API_KEY}`;
+        break;
     }
 
     const req = await axios.get(url);
@@ -54,7 +61,7 @@ const useMovies = (searchParams, getDataType) => {
 
   useEffect(() => {
     getMoviesData();
-  }, [searchParams.id]);
+  }, [searchParams.id, searchParams.personId]);
   return movies;
 };
 

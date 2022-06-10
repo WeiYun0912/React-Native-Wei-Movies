@@ -8,7 +8,7 @@ export const LightTheme = {
   MovieOverview: "#969696",
   MovieCastTitle: "#484848",
   MovieCast: "#969696",
-  MoiveRecommend: "#753030",
+  MoiveRecommend: "#484848",
 
   ShowAll: "#7272f7",
 };
