@@ -16,10 +16,14 @@
 
 [下載 apk](https://drive.google.com/file/d/18JFhCTpoW7Bti-xaXq5XM2ER8zKES00b/view?usp=sharing)
 
+<div style='display:inline-block'>
 <img src="https://i.imgur.com/0tw5hoE.jpg" width="300"/>
 <img src="https://i.imgur.com/XgQCwwU.jpg" width="300"/>
+</div>
 
+<div style='display:inline-block'>
 <img src="https://i.imgur.com/osTdNBf.jpg" width="300"/>
 <img src="https://i.imgur.com/QNWs0Zz.jpg" width="300"/>
+</div>
 
 <img src="https://i.imgur.com/Kg6HNuN.jpg" width="300"/>
