@@ -1,4 +1,5 @@
 import { SafeAreaView, ScrollView, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useContext } from "react";
 import Movies from "../components/Movies";
 import { FAB } from "react-native-elements";
@@ -8,6 +9,17 @@ import { DarkTheme, LightTheme } from "../ThemeStyles";
 
 export default function Home({ navigation }) {
   const { setTheme, theme } = useContext(ThemeContext);
+
+  const setDarkTheme = async () => {
+    await AsyncStorage.setItem("@theme", "dark");
+    setTheme("dark");
+  };
+
+  const setLightTheme = async () => {
+    await AsyncStorage.setItem("@theme", "light");
+    setTheme("light");
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -79,9 +91,7 @@ export default function Home({ navigation }) {
             <Ionicons name="sunny" color="#FBCB0A" size={25} />
           )
         }
-        onPress={() =>
-          theme == "light" ? setTheme("dark") : setTheme("light")
-        }
+        onPress={() => (theme == "light" ? setDarkTheme() : setLightTheme())}
 
         // icon={<Ionicons name="sunny" color="#FBCB0A" size={25} />}
       />

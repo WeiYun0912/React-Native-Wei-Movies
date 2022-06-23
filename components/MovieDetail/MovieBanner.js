@@ -1,6 +1,8 @@
 import { View, Text, Image, ImageBackground } from "react-native";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import MovieGenre from "../../helper/MovieGenre";
+
 export default function MovieBanner({
   backdrop,
   poster,
@@ -9,7 +11,12 @@ export default function MovieBanner({
   voteCount,
   runtime,
   release,
+  genres,
 }) {
+  const movieGenre = genres?.map((genre) =>
+    MovieGenre.find((gen) => gen.id == genre.id)
+  );
+
   return (
     <View>
       <View>
@@ -25,7 +32,7 @@ export default function MovieBanner({
           resizeMode="cover"
           imageStyle={{ opacity: 0.4 }}
         >
-          <BannerTitle title={title} />
+          <BannerTitle title={title} movieGenre={movieGenre} />
           <View
             style={{
               flexDirection: "row",
@@ -46,7 +53,7 @@ export default function MovieBanner({
   );
 }
 
-const BannerTitle = ({ title }) => (
+const BannerTitle = ({ title, movieGenre }) => (
   <View
     style={{
       alignItems: "center",
@@ -64,9 +71,19 @@ const BannerTitle = ({ title }) => (
     >
       {title}
     </Text>
-    <Text style={{ color: "#afb6be", fontSize: 17 }}>
-      Animation, Adventure, Family, Comedy
-    </Text>
+    <View
+      style={{
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+      }}
+    >
+      {movieGenre?.map((genre, i) => (
+        <Text key={genre.id} style={{ color: "#afb6be", fontSize: 17 }}>
+          {movieGenre.length == i + 1 ? genre.name : genre.name + "," + " "}
+        </Text>
+      ))}
+    </View>
   </View>
 );
 

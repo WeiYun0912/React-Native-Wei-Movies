@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import React, { useContext } from "react";
 import { LightTheme, DarkTheme } from "../../ThemeStyles";
 import Ionicons from "react-native-vector-icons/Ionicons";

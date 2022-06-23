@@ -48,6 +48,7 @@ export default function MovieDetail({ route, navigation }) {
             voteCount={movie.vote_count}
             runtime={movie.runtime}
             release={movie.release_date}
+            genres={movie.genres}
           />
           <MovieAction />
         </View>

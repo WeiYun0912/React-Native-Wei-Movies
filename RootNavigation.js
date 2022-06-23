@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -6,6 +6,7 @@ import Home from "./screens/Home";
 import FavoriteMovie from "./screens/FavoriteMovie";
 import MovieDetail from "./screens/MovieDetail";
 import CastDetail from "./screens/CastDetail";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { ThemeProvider } from "./Theme";
 
@@ -24,6 +25,16 @@ const DarkTheme = {
 
 export default function RootNavigation() {
   const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const getAsyncStorage = async () => {
+      // setTheme();
+      const value = await AsyncStorage.getItem("@theme");
+      setTheme(value);
+    };
+    getAsyncStorage();
+  }, []);
+
   return (
     <ThemeProvider theme={theme} setTheme={setTheme}>
       <NavigationContainer theme={theme == "light" ? DefaultTheme : DarkTheme}>
