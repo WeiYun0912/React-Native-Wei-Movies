@@ -15,6 +15,8 @@ const IMDB_API_KEY = "a7a877f8755c80969895d0d4749349af";
 // https://api.themoviedb.org/3/search/movie?api_key=a7a877f8755c80969895d0d4749349af&query="Toy Story"
 const useMovies = (searchParams, getDataType) => {
   const [movies, setMovies] = useState([]);
+  
+  // 根據傳進來的 url 和 模式 去取得 API 資料
   const getMoviesData = async () => {
     let url = "";
     switch (getDataType) {
